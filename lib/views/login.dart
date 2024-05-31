@@ -1,17 +1,22 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:my_notes/presentation/router/router_imports.gr.dart';
+import 'package:my_notes/views/home.dart';
 
 import '../AppPreferences.dart';
-import '../constants/routes.dart';
-import '../constants/sharepreferanceskeys.dart';
+import '../core/constants/routes.dart';
+import '../core/constants/sharepreferanceskeys.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+
+@RoutePage()
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<Login> createState() => _LoginState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _LoginState extends State<Login> {
   late final TextEditingController _email;
   late final TextEditingController _password;
 
@@ -65,7 +70,9 @@ class _LoginViewState extends State<LoginView> {
               final password = _password.text;
               if (email.isNotEmpty && password.isNotEmpty) {
                 await AppPreferences().setBool(isUserLogin, true);
-                Navigator.pushNamed(context, homeRoute);
+                AutoRouter.of(
+                  context
+                ).push(const HomeRoute());
               }
             },
             child: const Text('Login'),

@@ -1,32 +1,30 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
-import 'package:my_notes/constants/routes.dart';
-import 'package:my_notes/views/login_view.dart';
+import 'package:my_notes/core/constants/my_string.dart';
+import 'package:my_notes/core/constants/routes.dart';
+import 'package:my_notes/core/themes/app_themes.dart';
+import 'package:my_notes/presentation/router/router_imports.dart';
+import 'package:my_notes/views/login.dart';
 
 import 'AppPreferences.dart';
-import 'constants/sharepreferanceskeys.dart';
-import 'views/home_view.dart';
+import 'core/constants/sharepreferanceskeys.dart';
+import 'views/home.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
   await AppPreferences().init();
+  final _appRouter = AppRouter();
 
   runApp(
-    MaterialApp(
+    MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MainPage(),
-      routes: {
-        loginRoute: (context) => const LoginView(),
-        homeRoute: (context) => const HomePage(),
-      },
+      title: MyStrings.appName,
+      theme: AppThemes.light,
+      darkTheme: AppThemes.dark,
+      routerConfig: _appRouter.config(),
     ),
   );
 }
@@ -71,9 +69,9 @@ class _MainPageState extends State<MainPage> {
           final config = snapshot.data!;
 
           if (AppPreferences().getBool(isUserLogin,defaultValue: false)) {
-            return const HomePage();
+            return const Home();
           } else {
-            return const LoginView();
+            return const Login();
           }
         } else if (snapshot.hasError) {
           // Handle error
@@ -84,8 +82,8 @@ class _MainPageState extends State<MainPage> {
         }
         // Show loading spinner or placeholder while fetching remote config
         return MaterialApp(
-          title: 'Loading',
-          home: Text('Loading'),
+          title: MyStrings.loading,
+          home: Text(MyStrings.loading),
         );
       },
     );

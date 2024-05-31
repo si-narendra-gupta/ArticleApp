@@ -1,14 +1,17 @@
+
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+@RoutePage()
+class Home extends StatefulWidget {
+  const Home({super.key});
 
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<Home> createState() => _HomeState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return const Column(
