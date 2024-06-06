@@ -53,6 +53,7 @@ dependencies:
   flutter_screenutil: ^5.9.1
   feather_icons: ^1.2.0
   animation_wrappers: ^3.0.0
+  mason_cli: ^0.1.0-dev.55
 
 dev_dependencies:
   flutter_test:
@@ -78,7 +79,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/ic_brand_logo.webp
+    - assets/images/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

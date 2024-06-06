@@ -1,11 +1,7 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:my_notes/presentation/router/router_imports.gr.dart';
-import 'package:my_notes/views/home.dart';
 
-import '../AppPreferences.dart';
-import '../core/constants/routes.dart';
-import '../core/constants/sharepreferanceskeys.dart';
+// ignore_for_file: use_build_context_synchronously
+
+part of  'login_imports.dart';
 
 
 @RoutePage()
@@ -38,18 +34,18 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor:Theme.of(context).primaryColor,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset('assets/ic_brand_logo.webp'),
-          Text("Welcome to the den!",
+          Image.asset(MyAssets.brandLogo),
+          const Text("Welcome to the den!",
               style: TextStyle(
                   fontSize: 24,
                   fontStyle: FontStyle.normal,
                   fontWeight: FontWeight.bold,
-                  color: Colors.red)),
+                  color: MyColors.primaryColor)),
           TextField(
             controller: _email,
             autocorrect: false,
